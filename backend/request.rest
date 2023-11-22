@@ -1,0 +1,47 @@
+PATCH http://localhost:5000/user/d0cc3ac8-247d-42cc-80ad-3dce0e554575
+Content-Type: application/json
+
+{
+    "username": "Yama Update Lagi",
+    "email": "yama@gmail.com",
+    "password": "",
+    "confmPassword": "",
+    "role": "CB"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "yama@gmail.com",
+    "password": "yama"
+}
+
+### 
+GET http://localhost:5000/
+
+###
+DELETE http://localhost:5000/logout
+
+
+//BENDA
+###
+PATCH http://localhost:5000/tradisi/b87b7443-1b42-45ed-af20-e8e6975fd817
+Content-Type: application/json
+
+{
+    "nama": "Tradisi Update Console",
+    "namalain": "namalain",
+    "provinsi": "provinsi",
+    "kota": "kota",
+    "kecamatan": "kecamatan",
+    "desa": "desa",
+    "dusun": "dusun",
+    "koordx": "koordx",
+    "koordy": "koordy",
+    "deskripsi": "deskripsi",
+    "narasumber": "narasumber",
+    "fotoPath": "fotoPath",
+    "sertiPath": "sertiPath"
+}
