@@ -116,7 +116,7 @@ export default function DataCB() {
                   className="absolute bottom-3 py-2 px-3 left-4 flex w-[calc(100%-2rem)] -translate-x-2/4 rounded-lg border border-200 bg-100/75"
                   initial={{opacity: 0, y: 10}}
                   animate={{opacity: 1, y: 0}}
-                  transition={{duration: 0.3, delay: index * 0.1 + 0.3}}>
+                  transition={{duration: 0.2, delay: index * 0.1 + 0.1}}>
                   <Typography>{nama}</Typography>
                 </motion.figcaption>
               </figure>
