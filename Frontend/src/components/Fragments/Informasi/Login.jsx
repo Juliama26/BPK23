@@ -31,11 +31,15 @@ export default function Login() {
       className="flex justify-center items-center h-screen bg-cover bg-center bg-gradient-to-tr from-100 to-200"
       // style={{backgroundImage: `url('/image/noken.jpg')`}}>
     >
-      <section className="w-full md:w-1/2 lg:w-1/3 px-6 py-8 bg-white bg-opacity-90 rounded-lg shadow-lg">
-        <h1 className="text-xl text-center font-semibold mb-6">
+      <section className="w-full md:w-1/2 lg:w-1/3 px-6 py-5 bg-white bg-opacity-90 rounded-lg shadow-lg">
+        {/* <h1 className="text-xl text-center font-semibold mb-6">
           Masuk untuk pendataan
           <hr className="border-b-2 border-gray-200" />
-        </h1>
+        </h1> */}
+        <section className="flex flex-col items-center pb-4 -space-y-1">
+          <h1 className="text-3xl font-bold text-950">BPK23</h1>
+          <p>Balai Pelestarian Kebudayaan Wilayah XXIII</p>
+        </section>
         {message && <p className="text-red-500 text-xs mb-4">{message}</p>}
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <Input_

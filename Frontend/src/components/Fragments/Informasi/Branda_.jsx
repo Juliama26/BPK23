@@ -5,7 +5,6 @@ export default function Branda_() {
   const images = [
     "/image/tugu-jepang.jpg",
     "/image/rumah-kaki-seribu.jpg",
-    // "/image/logo.png",
     "/image/noken.jpg",
   ];
 
@@ -15,7 +14,7 @@ export default function Branda_() {
         className="max-w-lg py-10"
         initial={{opacity: 0, x: -100}}
         animate={{opacity: 1, x: 0}}
-        transition={{duration: 0.8}}>
+        transition={{duration: 0.2}}>
         <h1 className="text-3xl md:text-5xl font-bold text-950">
           Merangkai Sejarah, Menggapai Masa Depan
         </h1>
@@ -33,10 +32,10 @@ export default function Branda_() {
             key={index}
             src={image}
             alt="Warisan Budaya Papua"
-            className="flex flex-col justify-center h-52 pl-28 md:h-80"
+            className="w-full h-52 md:h-[335px] rounded object-center"
             initial={{opacity: 0, scale: 0.8}}
             animate={{opacity: 1, scale: 1}}
-            transition={{duration: 0.5, delay: index * 0.2}}
+            transition={{duration: 0.2, delay: index * 0.2}}
           />
         ))}
       </Carousel>
