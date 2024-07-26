@@ -1,6 +1,6 @@
-import {useEffect, useState} from "react";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {motion, useAnimation} from "framer-motion";
 import {AiOutlineDatabase, AiOutlineContainer} from "react-icons/ai";
@@ -24,7 +24,9 @@ export default function Welcome() {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/auth/whoami");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/auth/whoami`
+      );
       const decoded = jwtDecode(response.data.accessToken);
       setToken(response.data.accessToken);
       setFullName(decoded.name);
@@ -43,7 +45,7 @@ export default function Welcome() {
       const fetchCB = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:3071/public/data-cb",
+            `${import.meta.env.VITE_BE_URL}/public/data-cb`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -65,7 +67,7 @@ export default function Welcome() {
       const fetchOPK = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:3071/public/data-opk",
+            `${import.meta.env.VITE_BE_URL}/public/data-opk`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

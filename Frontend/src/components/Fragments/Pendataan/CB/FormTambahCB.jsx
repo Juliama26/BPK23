@@ -34,7 +34,9 @@ export default function FormTambahCB(props) {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        const response = await axios.get("http://localhost:3071/auth/whoami");
+        const response = await axios.get(
+          `${import.meta.env.VITE_BE_URL}/auth/whoami`
+        );
         const decoded = jwtDecode(response.data.accessToken);
         setToken(response.data.accessToken);
         setExpired(decoded.exp);
@@ -69,12 +71,16 @@ export default function FormTambahCB(props) {
       }
       image.forEach((file) => submitData.append("imageUrl", file));
 
-      await axios.post(`http://localhost:3071/data-cb/${id}`, submitData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_BE_URL}/data-cb/${id}`,
+        submitData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       navigate(`/pendataan-cb/${id}`);
     } catch (error) {
       if (error.response) {

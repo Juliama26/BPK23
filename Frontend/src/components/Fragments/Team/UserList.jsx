@@ -27,7 +27,9 @@ export default function UserList() {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/auth/whoami");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/auth/whoami`
+      );
       const newToken = response.data.accessToken;
       setToken(newToken);
       const decoded = jwtDecode(newToken);
@@ -42,11 +44,14 @@ export default function UserList() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/manage/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/manage/users`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       let sortID = response.data;
       sortID.sort((a, b) =>
         a.id === isLoginID ? -1 : b.id === isLoginID ? 1 : 0
@@ -60,7 +65,7 @@ export default function UserList() {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3071/manage/users/${id}`,
+        `${import.meta.env.VITE_BE_URL}/manage/users/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

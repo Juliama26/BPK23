@@ -18,7 +18,7 @@ export default function DataOPK() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3071/public/opk`)
+      .get(`${import.meta.env.VITE_BE_URL}/public/opk`)
       .then((response) => {
         setCategory(response.data);
       })
@@ -30,7 +30,9 @@ export default function DataOPK() {
   useEffect(() => {
     if (selecCategoryId !== null) {
       axios
-        .get(`http://localhost:3071/public/data-opk/${selecCategoryId}`)
+        .get(
+          `${import.meta.env.VITE_BE_URL}/public/data-opk/${selecCategoryId}`
+        )
         .then((response) => {
           setList(response.data);
           filterData(selectKabupaten, response.data);
@@ -116,7 +118,7 @@ export default function DataOPK() {
                   className="absolute bottom-3 py-2 px-3 left-4 flex w-[calc(100%-2rem)] -translate-x-2/4 rounded-lg border border-200 bg-100/75"
                   initial={{opacity: 0, y: 10}}
                   animate={{opacity: 1, y: 0}}
-                  transition={{duration: 0.2, delay: index * 0.1 + 0.1}}>
+                  transition={{duration: 0.1, delay: index * 0.1 + 0.1}}>
                   <Typography>{nama}</Typography>
                 </motion.figcaption>
               </figure>

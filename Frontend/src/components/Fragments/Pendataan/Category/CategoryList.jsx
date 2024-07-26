@@ -23,7 +23,9 @@ export default function CategoryList() {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        const response = await axios.get("http://localhost:3071/auth/whoami");
+        const response = await axios.get(
+          `${import.meta.env.VITE_BE_URL}/auth/whoami`
+        );
         const decoded = jwtDecode(response.data.accessToken);
         setToken(response.data.accessToken);
         setExpired(decoded.exp);
@@ -45,11 +47,14 @@ export default function CategoryList() {
 
   const fetchDataCb = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/category/cb", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/category/cb`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setCb(response.data);
     } catch (err) {
       console.error("Error fetching data:", err);
@@ -60,7 +65,7 @@ export default function CategoryList() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3071/category/cb",
+        `${import.meta.env.VITE_BE_URL}/category/cb`,
         {title: newTitleCb},
         {
           headers: {
@@ -79,7 +84,7 @@ export default function CategoryList() {
 
   const handleDeleteCb = async (id) => {
     try {
-      await axios.delete(`http://localhost:3071/category/cb/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BE_URL}/category/cb/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -92,11 +97,14 @@ export default function CategoryList() {
 
   const fetchDataOpk = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/category/opk", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/category/opk`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setOpk(response.data);
     } catch (err) {
       console.error("Error fetching data:", err);
@@ -107,7 +115,7 @@ export default function CategoryList() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3071/category/opk",
+        `${import.meta.env.VITE_BE_URL}/category/opk`,
         {title: newTitleOpk},
         {
           headers: {
@@ -125,7 +133,7 @@ export default function CategoryList() {
 
   const handleDeleteOpk = async (id) => {
     try {
-      await axios.delete(`http://localhost:3071/category/opk/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BE_URL}/category/opk/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

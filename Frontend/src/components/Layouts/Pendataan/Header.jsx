@@ -37,7 +37,9 @@ export default function Header() {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/auth/whoami");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/auth/whoami`
+      );
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setToken(response.data.accessToken);
@@ -59,11 +61,14 @@ export default function Header() {
 
   const fetchDataCb = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/public/cb", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/public/cb`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setCb(response.data);
     } catch (err) {
       console.error("Error fetching data:", err);
@@ -71,11 +76,14 @@ export default function Header() {
   };
   const fetchDataOpk = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/public/opk", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/public/opk`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setOpk(response.data);
     } catch (err) {
       console.error("Error fetching data:", err);
@@ -84,7 +92,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      await axios.delete("http://localhost:3071/auth/logout", null, {
+      await axios.delete(`${import.meta.env.VITE_BE_URL}/auth/logout`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -34,7 +34,9 @@ export default function FormUpdateCB(props) {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        const response = await axios.get("http://localhost:3071/auth/whoami");
+        const response = await axios.get(
+          `${import.meta.env.VITE_BE_URL}/auth/whoami`
+        );
         const decoded = jwtDecode(response.data.accessToken);
         setToken(response.data.accessToken);
         setExpired(decoded.exp);
@@ -52,7 +54,7 @@ export default function FormUpdateCB(props) {
       if (token) {
         try {
           const response = await axios.get(
-            `http://localhost:3071/data-cb/${id}`,
+            `${import.meta.env.VITE_BE_URL}/data-cb/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -103,12 +105,16 @@ export default function FormUpdateCB(props) {
         submitData.append(key, formData[key]);
       }
       image.forEach((file) => submitData.append("imageUrl", file));
-      await axios.patch(`http://localhost:3071/data-cb/${id}`, submitData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.patch(
+        `${import.meta.env.VITE_BE_URL}/data-cb/${id}`,
+        submitData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       navigate(`/pendataan-cb/${formData.categoryId}`);
     } catch (error) {
       if (error.response) {

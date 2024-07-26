@@ -10,9 +10,8 @@ export default function DetailCB_() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3071/public/cb-id/${id}`
+        `${import.meta.env.VITE_BE_URL}/public/cb-id/${id}`
       );
-      console.log(response.data);
       setData(response.data);
     };
     fetchData();
@@ -21,18 +20,6 @@ export default function DetailCB_() {
   return (
     <section className="min-h-screen p-3 md:px-10 md:py-5">
       <section className="flex flex-col items-center gap-y-3 md:gap-y-5">
-        {/* <Carousel loop={true} autoplay={true} className="w-full md:w-1/2">
-          {data.imageUrl &&
-            data.imageUrl.map((imageUrl, index) => (
-              <img
-                key={index}
-                src={imageUrl}
-                alt="Warisan Budaya Papua"
-                className="w-full h-52 md:h-80 rounded-lg object-center"
-              />
-            ))}
-        </Carousel> */}
-
         {data.imageUrl && data.imageUrl.length > 0 ? (
           <Carousel loop={true} autoplay={true} className="w-full md:w-1/2">
             {data.imageUrl.map((imageUrl, index) => (

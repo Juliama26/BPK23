@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {jwtDecode} from "jwt-decode";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 export default function DetailDataCB() {
   const [data, setData] = useState([]);
@@ -14,7 +14,9 @@ export default function DetailDataCB() {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        const response = await axios.get("http://localhost:3071/auth/whoami");
+        const response = await axios.get(
+          `${import.meta.env.VITE_BE_URL}/auth/whoami`
+        );
         const decoded = jwtDecode(response.data.accessToken);
         setToken(response.data.accessToken);
         setExpired(decoded.exp);
@@ -32,7 +34,7 @@ export default function DetailDataCB() {
       if (token) {
         try {
           const response = await axios.get(
-            `http://localhost:3071/data-cb/${id}`,
+            `${import.meta.env.VITE_BE_URL}/data-cb/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -138,7 +140,9 @@ export default function DetailDataCB() {
           <h2 className="text-base md:text-xl font-semibold text-900">
             Dokumen Lainnya:
           </h2>
-          <p>{data.documenUrl}</p>
+          <Link to={data.documenUrl} target="_blank">
+            {data.documenUrl}
+          </Link>
         </span>
       </section>
     </section>
