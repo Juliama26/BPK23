@@ -27,7 +27,9 @@ export default function UserForm(props) {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/auth/whoami");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/auth/whoami`
+      );
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setToken(response.data.accessToken);
@@ -50,12 +52,16 @@ export default function UserForm(props) {
       formData.append("user_role", role);
       formData.append("imageUrl", image);
 
-      await axios.post("http://localhost:3071/manage/users", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_BE_URL}/manage/users`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       navigate("/manage/users");
     } catch (error) {

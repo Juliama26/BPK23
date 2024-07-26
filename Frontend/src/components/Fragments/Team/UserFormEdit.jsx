@@ -35,7 +35,9 @@ export default function UserFormEdit(props) {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:3071/auth/whoami");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BE_URL}/auth/whoami`
+      );
       setToken(response.data.accessToken);
       const decoded = jwtDecode(response.data.accessToken);
       setToken(response.data.accessToken);
@@ -50,7 +52,7 @@ export default function UserFormEdit(props) {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3071/manage/users/${id}`,
+        `${import.meta.env.VITE_BE_URL}/manage/users/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -83,12 +85,16 @@ export default function UserFormEdit(props) {
       formData.append("imageUrl", image);
     }
     try {
-      await axios.patch(`http://localhost:3071/manage/users/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.patch(
+        `${import.meta.env.VITE_BE_URL}/manage/users/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       navigate("/manage/users");
     } catch (error) {
       if (error.response) {

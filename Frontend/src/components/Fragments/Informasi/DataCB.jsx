@@ -18,7 +18,7 @@ export default function DataCB() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3071/public/cb`)
+      .get(`${import.meta.env.VITE_BE_URL}/public/cb`)
       .then((response) => {
         setCategory(response.data);
       })
@@ -30,7 +30,7 @@ export default function DataCB() {
   useEffect(() => {
     if (selecCategoryId !== null) {
       axios
-        .get(`http://localhost:3071/public/data-cb/${selecCategoryId}`)
+        .get(`${import.meta.env.VITE_BE_URL}/public/data-cb/${selecCategoryId}`)
         .then((response) => {
           setList(response.data);
           filterData(selectKabupaten, response.data);
@@ -116,7 +116,7 @@ export default function DataCB() {
                   className="absolute bottom-3 py-2 px-3 left-4 flex w-[calc(100%-2rem)] -translate-x-2/4 rounded-lg border border-200 bg-100/75"
                   initial={{opacity: 0, y: 10}}
                   animate={{opacity: 1, y: 0}}
-                  transition={{duration: 0.2, delay: index * 0.1 + 0.1}}>
+                  transition={{duration: 0.1, delay: index * 0.1 + 0.1}}>
                   <Typography>{nama}</Typography>
                 </motion.figcaption>
               </figure>

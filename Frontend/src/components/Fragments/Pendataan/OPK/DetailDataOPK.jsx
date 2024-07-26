@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {jwtDecode} from "jwt-decode";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 export default function DetailDataOPK() {
   const [data, setData] = useState({});
@@ -14,7 +14,9 @@ export default function DetailDataOPK() {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        const response = await axios.get("http://localhost:3071/auth/whoami");
+        const response = await axios.get(
+          `${import.meta.env.VITE_BE_URL}/auth/whoami`
+        );
         const decoded = jwtDecode(response.data.accessToken);
         setToken(response.data.accessToken);
         setExpired(decoded.exp);
@@ -32,7 +34,7 @@ export default function DetailDataOPK() {
       if (token) {
         try {
           const response = await axios.get(
-            `http://localhost:3071/data-opk/${id}`,
+            `${import.meta.env.VITE_BE_URL}/data-opk/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -288,8 +290,6 @@ export default function DetailDataOPK() {
         <h1 className="text-center text-2xl md:text-4xl font-bold text-900">
           {data.nama}
         </h1>
-
-        {/* render item by id */}
         {renderFieldById()}
         <span>
           <h2 className="text-base md:text-xl font-semibold text-900">
@@ -344,7 +344,9 @@ export default function DetailDataOPK() {
           <h2 className="text-base md:text-xl font-semibold text-900">
             Dokumen Lainnya:
           </h2>
-          <p>{data.documenUrl}</p>
+          <Link to={data.documenUrl} target="_blank">
+            {data.documenUrl}
+          </Link>
         </span>
       </section>
     </section>

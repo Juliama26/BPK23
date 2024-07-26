@@ -33,7 +33,9 @@ export default function FormUpdatePermainan(props) {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        const response = await axios.get("http://localhost:3071/auth/whoami");
+        const response = await axios.get(
+          `${import.meta.env.VITE_BE_URL}/auth/whoami`
+        );
         const decoded = jwtDecode(response.data.accessToken);
         setToken(response.data.accessToken);
         setExpired(decoded.exp);
@@ -51,7 +53,7 @@ export default function FormUpdatePermainan(props) {
       if (token) {
         try {
           const response = await axios.get(
-            `http://localhost:3071/data-opk/${id}`,
+            `${import.meta.env.VITE_BE_URL}/data-opk/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -101,12 +103,16 @@ export default function FormUpdatePermainan(props) {
         submitData.append(key, formData[key]);
       }
       image.forEach((file) => submitData.append("imageUrl", file));
-      await axios.patch(`http://localhost:3071/data-opk/${id}`, submitData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.patch(
+        `${import.meta.env.VITE_BE_URL}/data-opk/${id}`,
+        submitData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       navigate(`/pendataan-opk/${formData.categoryId}`);
     } catch (error) {
       if (error.response) {

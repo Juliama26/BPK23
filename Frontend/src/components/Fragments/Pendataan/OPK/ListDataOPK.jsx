@@ -33,7 +33,9 @@ export default function ListDataOPK() {
   useEffect(() => {
     const refreshToken = async () => {
       try {
-        const response = await axios.get("http://localhost:3071/auth/whoami");
+        const response = await axios.get(
+          `${import.meta.env.VITE_BE_URL}/auth/whoami`
+        );
         const decoded = jwtDecode(response.data.accessToken);
         setToken(response.data.accessToken);
         setExpired(decoded.exp);
@@ -55,7 +57,7 @@ export default function ListDataOPK() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3071/data-opk/category/${id}`,
+        `${import.meta.env.VITE_BE_URL}/data-opk/category/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -76,7 +78,7 @@ export default function ListDataOPK() {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3071/data-opk/${id}`,
+        `${import.meta.env.VITE_BE_URL}/data-opk/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -141,6 +143,7 @@ export default function ListDataOPK() {
       Dusun: item.dusun,
       Deskripsi: item.deskripsi,
       Narasumber: item.narasumber,
+      Dokumen_Lainnya: item.documenUrl,
     }));
     const ws = XLSX.utils.json_to_sheet(dataToExport);
     ws["cols"] = [
