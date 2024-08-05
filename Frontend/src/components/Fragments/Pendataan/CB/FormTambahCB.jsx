@@ -94,8 +94,10 @@ export default function FormTambahCB(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1 className="text-xl text-center font-semibold py-6 opacity-70">
-        {title}
+      <h1 className="text-base md:text-lg text-center font-semibold py-4 md:py-6 opacity-70 uppercase">
+        <span className="border-b-2 border-900 border-opacity-20">
+          {title} CB
+        </span>
       </h1>
       <span className="text-xs text-r500">{message}</span>
       <section className="grid grid-cols-1 gap-y-5">
