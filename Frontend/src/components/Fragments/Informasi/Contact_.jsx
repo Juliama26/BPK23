@@ -10,7 +10,7 @@ const items = [
   {
     id: 1,
     icon: <FaFacebook className="text-blue-500" />,
-    link: "https://www.instagram.com/bpk_wilayahxxiii/",
+    link: "https://www.facebook.com/profile.php?id=100093030066283",
   },
   {
     id: 2,
@@ -43,10 +43,10 @@ export default function Contact() {
 
     emailjs
       .sendForm(
-        "service_56riflm",
-        "template_nbgqdnl",
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
         form.current,
-        "Euw_HAEDGalsIAzFR"
+        import.meta.env.VITE_PUBLIC_KEY
       )
       .then(
         () => {
@@ -67,7 +67,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="h-screen justify-center items-center px-3 md:px-10 flex flex-col md:flex-row gap-x-16 gap-y-10">
+    <main className="h-screen justify-center items-center px-3 md:px-10 flex flex-col md:flex-row gap-x-16 gap-y-10 bg-gradient-to-tr from-100 to-50">
       <section className="flex md:flex-col md:gap-y-10 gap-x-10">
         {items.map((item) => (
           <Link
@@ -94,6 +94,7 @@ export default function Contact() {
             name="from_name"
             type="text"
             label="Your Name"
+            required
             value={formData.from_name}
             onChange={handleChange}
           />

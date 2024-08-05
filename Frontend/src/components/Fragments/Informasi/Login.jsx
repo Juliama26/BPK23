@@ -28,8 +28,8 @@ export default function Login() {
 
   return (
     // <section className="flex justify-center items-center h-screen bg-cover bg-center bg-900 bg-opacity-25">
-    <section className="flex justify-center items-center h-screen bg-cover bg-center bg-gradient-to-tr from-100 to-200">
-      <section className="w-full md:w-1/2 lg:w-1/3 px-6 py-5 bg-white bg-opacity-90 rounded-lg shadow-lg">
+    <section className="flex justify-center items-center h-screen bg-cover bg-center">
+      <section className="w-full md:w-1/2 lg:w-1/3 px-6 py-5 bg-white bg-opacity-90 rounded-lg shadow-lg border-2">
         <section className="flex flex-col items-center pb-1 -space-y-1">
           <h1 className="text-3xl font-bold text-950">BPK23</h1>
           <p>Balai Pelestarian Kebudayaan Wilayah XXIII</p>
