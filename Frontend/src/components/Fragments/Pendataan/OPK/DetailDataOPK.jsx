@@ -142,7 +142,7 @@ export default function DetailDataOPK() {
               <h2 className="text-base md:text-xl font-semibold text-900">
                 Fungsi OPK:
               </h2>
-              <p>{data.jenis}</p>
+              <p>{data.fungsi}</p>
             </section>
           </>
         );
