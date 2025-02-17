@@ -1,6 +1,6 @@
 # BPK23
 
-**BPK23** adalah sebuah sistem pendataan untuk Warisan Budaya di Wilayah XXIII. Projek ini dikembangkan sebagai bagian dari program magang kami, dengan tujuan untuk mendokumentasikan dan mengelola data warisan budaya secara digital.
+**BPK23** adalah sebuah sistem pendataan untuk Warisan Budaya di Wilayah XXIII. Projek ini dikembangkan sebagai Alih Wahana dari program magang.
 Dibangun dengan teknologi **React.Js** Sebagai Frontend, **TailwindCSS** untuk desain yang responsif, **PostgreSQL** sebagai database, **Sequelize** sebagai ORM untuk manajemen database, dan **Express.Js** Sebagai Backend.
 
 ## Screenshot Aplikasi
